@@ -5,6 +5,10 @@ namespace TextGame.World
     public class Location
     {
         private string locationName;
+        public string LocationName
+        {
+            get { return locationName; }
+        }
         private bool gatheringAvaiable;
         public bool GateringAvaiable { get { return gatheringAvaiable; } }
         private List<Material> materialsAvaiable = new List<Material>();
@@ -27,7 +31,7 @@ namespace TextGame.World
 
         public string ToString()
         {
-            string locationString = locationName + "\n Materials:";
+            string locationString = locationName + "\nMaterials:";
             foreach (Material material in materialsAvaiable)
             {
                 locationString += "\n" + material.MaterialName;
@@ -35,8 +39,13 @@ namespace TextGame.World
 
             return locationString;
         }
-        
-        
-        
+
+        public bool ContainsMaterial(Material material)
+        {
+            if (materialsAvaiable.Contains(material)) return true;
+            return false;
+        }
+
+
     }    
 }

@@ -4,7 +4,7 @@ public class Character
 {
     private string characterName;
     private CharacterType characterType;
-    private List<ICharactersSystems> characterSystems = new List<ICharactersSystems>();
+    private List<ACharacterSystem> characterSystems = new List<ACharacterSystem>();
     
     public Character(string characterName, CharacterType characterType)
     {
@@ -12,7 +12,7 @@ public class Character
         this.characterType = characterType;
     }
 
-    public void AddSystem(ICharactersSystems system)
+    public void AddSystem(ACharacterSystem system)
     {
         characterSystems.Add(system);
     }

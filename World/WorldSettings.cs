@@ -32,5 +32,30 @@ public class WorldSettings
     {
         return locationsInWorld;
     }
-    
+
+    public bool ContainsNameInWorld(string name, WorldEntity worldEntity)
+    {
+        if (worldEntity == WorldEntity.MATERIAL)
+        {
+            foreach (Material material in materialsAvaiableInWorld)
+            {
+                if (material.MaterialName == name) return true;
+            }
+            return false;   
+        }
+        else
+        {
+            foreach (Location location in locationsInWorld)
+            {
+                if (location.LocationName == name) return true;
+            }
+            return false;
+        }
+    }
+
+
+    public enum WorldEntity
+    {
+        MATERIAL, LOCATION
+    }
 }

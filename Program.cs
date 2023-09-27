@@ -1,7 +1,4 @@
-﻿using TextGame.Characters;
-using TextGame.Characters.CharactersSystems;
-using TextGame.Crafting;
-using TextGame.World;
+﻿using TextGame.World;
 
 WorldSettings worldSettings = WorldGenerator.GenerateWorld();
 

@@ -1,6 +1,6 @@
 ﻿namespace TextGame.Characters.CharactersSystems;
 
-public class ACharacterSystem: ICharactersSystems
+public abstract class ACharacterSystem
 {
     protected string systemName;
     public string SystemName
