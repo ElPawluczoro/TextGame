@@ -34,7 +34,7 @@ namespace TextGame.World
             string locationString = locationName + "\nMaterials:";
             foreach (Material material in materialsAvaiable)
             {
-                locationString += "\n" + material.MaterialName;
+                locationString += "\n" + material.ToString();
             }
 
             return locationString;

@@ -15,6 +15,7 @@ public class WorldSettings
 
     public void AddMaterial(Material material)
     {
+        if (material.MaterialDifficulty == 0 || material.MaterialHardness == 0 || material.MaterialLevel == 0) return;
         materialsAvaiableInWorld.Add(material);
     }
 

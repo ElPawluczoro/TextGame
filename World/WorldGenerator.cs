@@ -38,6 +38,7 @@ public class WorldGenerator
 
     public static void AddNewMaterialsToWorld(WorldSettings worldSettings, int amount)
     {
+        Random random = new Random();
         string newMaterialName = GenerateMaterialName();
         for (int i = 0; i < amount; i++)
         {
@@ -45,7 +46,14 @@ public class WorldGenerator
             {
                 newMaterialName = GenerateMaterialName();   
             }
-            worldSettings.AddMaterial(new Material(newMaterialName));
+
+            Material newMaterial = new Material(newMaterialName);
+            int hardness = random.Next(1, 100);
+            int difficulty = random.Next(1, 10);
+            int level = (hardness / 10 + difficulty) / 4 ; //max should be 5
+            newMaterial.SetMaterialProperties(level, hardness, difficulty);
+            worldSettings.AddMaterial(newMaterial);
+            
 
         }
     }
