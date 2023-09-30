@@ -5,6 +5,8 @@ namespace TextGame.Characters.CharactersSystems;
 
 public class MaterialsGatherer: ACharacterSystem
 {
+    private int chanceForBonusMaterial = 0; //max 100
+    
     public MaterialsGatherer()
     {
         systemName = SystemsNames.MaterialsGatherer;
@@ -24,6 +26,24 @@ public class MaterialsGatherer: ACharacterSystem
             var index = random.Next(0, location.GetAvaiableMaterials().Count);
             material = location.GetAvaiableMaterials()[index];
             inv.AddMaterialsAmount(material, 1);
+            if (RollForBonusMaterial())
+            {
+                inv.AddMaterialsAmount(material, 1);
+            }
         }
     }
+
+    public bool RollForBonusMaterial()
+    {
+        Random random = new Random();
+        if (random.Next(1, 100) <= chanceForBonusMaterial) return true;
+        return false;
+    }
+
+    public void IncreaseChanceForBonusMaterial(int amount)
+    {
+        chanceForBonusMaterial += amount;
+        if (chanceForBonusMaterial > 100) chanceForBonusMaterial = 100;
+    }
+    
 }

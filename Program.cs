@@ -16,12 +16,7 @@ MaterialsInventory inv = (MaterialsInventory)character1.GetSystem(SystemsNames.M
 
 inv.AddWorldMaterials(worldSettings);
 
-foreach (Material material in worldSettings.GetMaterialsInWorld())
-{
-    
-    Console.WriteLine(material.MaterialName + ": " + inv.GetMaterialAmount(material));
-}
-
+mg.IncreaseChanceForBonusMaterial(100);
 mg.GatherMaterials(locations[1], inv);
 
 StaticMethods.WriteSeparator();
