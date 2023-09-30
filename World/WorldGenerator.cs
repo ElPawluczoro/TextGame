@@ -29,8 +29,8 @@ public class WorldGenerator
     {
         WorldSettings worldSettings = new WorldSettings("TestWorld");
 
-        AddNewMaterialsToWorld(worldSettings, 15);
-        AddNewLocationsToWorld(worldSettings, 9);
+        AddNewMaterialsToWorld(worldSettings, 3);
+        AddNewLocationsToWorld(worldSettings, 2);
         
 
         return worldSettings;

@@ -1,11 +1,36 @@
-﻿using TextGame.World;
+﻿using TextGame.Characters;
+using TextGame.Characters.CharactersSystems;
+using TextGame.Characters.PlayerCharacter;
+using TextGame.Crafting;
+using TextGame.GeneralMethods;
+using TextGame.World;
 
 WorldSettings worldSettings = WorldGenerator.GenerateWorld();
 
 List<Location> locations = worldSettings.GetLocationsInWorld();
-foreach (Location location in locations)
+
+Player character1 = new Player("Player");
+
+MaterialsGatherer mg = (MaterialsGatherer)character1.GetSystem(SystemsNames.MaterialsGatherer);
+MaterialsInventory inv = (MaterialsInventory)character1.GetSystem(SystemsNames.MaterialsInventory);
+
+inv.AddWorldMaterials(worldSettings);
+
+foreach (Material material in worldSettings.GetMaterialsInWorld())
 {
-    Console.WriteLine(location.ToString());
+    
+    Console.WriteLine(material.MaterialName + ": " + inv.GetMaterialAmount(material));
 }
+
+mg.GatherMaterials(locations[1], inv);
+
+StaticMethods.WriteSeparator();
+
+foreach (Material material in worldSettings.GetMaterialsInWorld())
+{
+    
+    Console.WriteLine(material.MaterialName + ": " + inv.GetMaterialAmount(material));
+}
+
 
 

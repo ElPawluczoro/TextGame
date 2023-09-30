@@ -5,6 +5,11 @@ namespace TextGame.Characters.CharactersSystems;
 
 public class MaterialsGatherer: ACharacterSystem
 {
+    public MaterialsGatherer()
+    {
+        systemName = SystemsNames.MaterialsGatherer;
+    }
+    
     public void GatherMaterials(Location location, MaterialsInventory inv)
     {
         if (!location.GateringAvaiable) return;

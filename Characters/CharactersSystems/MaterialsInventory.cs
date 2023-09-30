@@ -1,4 +1,5 @@
 ﻿using TextGame.Crafting;
+using TextGame.World;
 
 namespace TextGame.Characters.CharactersSystems;
 
@@ -9,13 +10,21 @@ public class MaterialsInventory : ACharacterSystem
 
     public MaterialsInventory()
     {
-        systemName = "MaterialsInventorySystem";
+        systemName = SystemsNames.MaterialsInventory;
     }
 
     public void AddNewMaterial(Material material)
     {
         materials.Add(material);
         materialsAmount.Add(material.MaterialName, 0);
+    }
+
+    public void AddWorldMaterials(WorldSettings worldSettings)
+    {
+        foreach (Material material in worldSettings.GetMaterialsInWorld())
+        {
+            AddNewMaterial(material);
+        }
     }
     
     public void AddMaterialsAmount(Material material, int amount)

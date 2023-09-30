@@ -29,9 +29,9 @@ namespace TextGame.World
             materialsAvaiable.Add(material);
         }
 
-        public string ToString()
+        public new string ToString()
         {
-            string locationString = locationName + "\nMaterials:";
+            string locationString = "Location: " + locationName + "\nMaterials:";
             foreach (Material material in materialsAvaiable)
             {
                 locationString += "\n" + material.ToString();

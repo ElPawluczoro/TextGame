@@ -1,19 +1,22 @@
 ﻿namespace TextGame.Characters.CharactersSystems;
 
-public class Character
+public abstract class Character
 {
-    private string characterName;
-    private CharacterType characterType;
-    private List<ACharacterSystem> characterSystems = new List<ACharacterSystem>();
+    protected string characterName;
+    protected CharacterType characterType;
+    protected List<ACharacterSystem> characterSystems = new List<ACharacterSystem>();
     
-    public Character(string characterName, CharacterType characterType)
+    public Character(string characterName)
     {
-        this.characterName = characterName;
-        this.characterType = characterType;
+        this.characterName = characterName; ;
     }
 
     public void AddSystem(ACharacterSystem system)
     {
+        foreach (ACharacterSystem s in characterSystems)
+        {
+            if (s.SystemName == system.SystemName) return;
+        }
         characterSystems.Add(system);
     }
 
@@ -23,7 +26,20 @@ public class Character
         {
             if (sys.SystemName == system.SystemName)
             {
-                return system;
+                return sys;
+            }
+        }
+
+        return null;
+    }
+
+    public ACharacterSystem GetSystem(string systemName)
+    {
+        foreach (ACharacterSystem sys in characterSystems)
+        {
+            if (sys.SystemName == systemName)
+            {
+                return sys;
             }
         }
 
