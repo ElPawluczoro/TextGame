@@ -7,8 +7,8 @@ public class Player : Character
     public Player(string characterName) : base(characterName)
     {
         characterType = CharacterType.PLAYER_CHARACTER;
-        AddSystem(new MaterialsInventory());
-        AddSystem(new MaterialsGatherer());
+        AddSystem(new MaterialsInventorySystem());
+        AddSystem(new MaterialsGathererSystem());
     }
     
     

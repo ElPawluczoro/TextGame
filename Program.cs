@@ -1,31 +1,44 @@
-﻿using TextGame.Characters;
-using TextGame.Characters.CharactersSystems;
+﻿using TextGame.Characters.CharactersSystems;
+using TextGame.Characters.Items;
 using TextGame.Characters.PlayerCharacter;
 using TextGame.Crafting;
 using TextGame.GeneralMethods;
 using TextGame.World;
 
-WorldSettings worldSettings = WorldGenerator.GenerateWorld();
+Material material1 = new("Material1");
+Material material2 = new("Material2");
 
-List<Location> locations = worldSettings.GetLocationsInWorld();
+List<Material> materialsR = new();
+List<int> materialsRA = new();
 
-Player character1 = new Player("Player");
+materialsR.Add(material1);
+materialsRA.Add(5);
+materialsR.Add(material2);
+materialsRA.Add(5);
 
-MaterialsGatherer mg = (MaterialsGatherer)character1.GetSystem(SystemsNames.MaterialsGatherer);
-MaterialsInventory inv = (MaterialsInventory)character1.GetSystem(SystemsNames.MaterialsInventory);
+CraftingRecipe recipe = new(materialsR, materialsRA);
 
-inv.AddWorldMaterials(worldSettings);
+Player player = new Player("Player");
+player.AddSystem(new MaterialsInventorySystem());
+player.AddSystem(new CraftingSystem());
 
-mg.IncreaseChanceForBonusMaterial(100);
-mg.GatherMaterials(locations[1], inv);
+MaterialsInventorySystem inv = (MaterialsInventorySystem)player.GetSystem(SystemsNames.MaterialsInventory);
+CraftingSystem crafting = (CraftingSystem)player.GetSystem(SystemsNames.Crafting);
+inv.AddNewMaterial(material1);
+inv.AddMaterialsAmount(material1, 10);
+inv.AddNewMaterial(material2);
+inv.AddMaterialsAmount(material2, 10);
 
-StaticMethods.WriteSeparator();
+Console.WriteLine("M1: " +inv.GetMaterialAmount(material1));
+Console.WriteLine("M2: " +inv.GetMaterialAmount(material2));
 
-foreach (Material material in worldSettings.GetMaterialsInWorld())
-{
-    
-    Console.WriteLine(material.MaterialName + ": " + inv.GetMaterialAmount(material));
-}
+PeaceOfGear item = (PeaceOfGear)crafting.CraftItem(recipe, inv);
+Console.WriteLine(item.ToString());
+
+Console.WriteLine("M1: " +inv.GetMaterialAmount(material1));
+Console.WriteLine("M2: " +inv.GetMaterialAmount(material2));
+
+
 
 
 

@@ -2,6 +2,7 @@
 
 public class SystemsNames
 {
-    public const string MaterialsGatherer = "MaterialsGatherer";
+    public const string MaterialsGatherer = "MaterialsGathererSystem";
     public const string MaterialsInventory = "MaterialsInventorySystem";
+    public const string Crafting = "CraftingSystem";
 }

@@ -3,16 +3,16 @@ using TextGame.World;
 
 namespace TextGame.Characters.CharactersSystems;
 
-public class MaterialsGatherer: ACharacterSystem
+public class MaterialsGathererSystem: ACharacterSystem
 {
     private int chanceForBonusMaterial = 0; //max 100
     
-    public MaterialsGatherer()
+    public MaterialsGathererSystem()
     {
         systemName = SystemsNames.MaterialsGatherer;
     }
     
-    public void GatherMaterials(Location location, MaterialsInventory inv)
+    public void GatherMaterials(Location location, MaterialsInventorySystem inv)
     {
         if (!location.GateringAvaiable) return;
 
