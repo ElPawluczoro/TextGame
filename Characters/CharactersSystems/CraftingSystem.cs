@@ -121,10 +121,11 @@ public class CraftingSystem : ACharacterSystem
 
     private void SetPeaceOfGearStatsByRarity(PeaceOfGear gear)
     {
+        Random random = new();
+        SetStat(gear, GearStats.Stats.ARMOR, random.Next(1, 10));
         switch (gear._GearRarity)
         {
             case PeaceOfGear.GearRarity.BASIC:
-                SetPeaceOfGearStat(gear, 1, 1, 10);
                 break;
             case PeaceOfGear.GearRarity.RARE: 
                 SetPeaceOfGearStat(gear, 2, 1, 10);

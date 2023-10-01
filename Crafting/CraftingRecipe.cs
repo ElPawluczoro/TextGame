@@ -22,10 +22,10 @@ public class CraftingRecipe
     public CraftingRecipe(string baseName, PeaceOfGear.GearType gearType,
                             List<Material> neededMaterials, List<int> neededMaterialsAmount)
     {
-        this.baseName = baseName;
         this.gearType = gearType;
         this.neededMaterials = neededMaterials;
         this.neededMaterialsAmount = neededMaterialsAmount;
+        SetBaseName(baseName);
     }
 
     public List<Material> GetNeededMaterials()
@@ -36,6 +36,27 @@ public class CraftingRecipe
     public List<int> GetNeededMaterialsAmount()
     {
         return neededMaterialsAmount;
+    }
+
+    private void SetBaseName(string name)
+    {
+        baseName = GetMostMaterial().MaterialName + " " + name;
+    }
+
+    private Material GetMostMaterial()
+    {
+        Material material = new Material("Blank");
+        int materialAmount = 0;
+
+        for (int i = 0; i < neededMaterials.Count; i++)
+        {
+            if (neededMaterialsAmount[i] > materialAmount)
+            {
+                material = neededMaterials[i];
+            }
+        }
+        
+        return material;
     }
     
 
