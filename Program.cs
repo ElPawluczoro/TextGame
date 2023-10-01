@@ -16,7 +16,7 @@ materialsRA.Add(5);
 materialsR.Add(material2);
 materialsRA.Add(5);
 
-CraftingRecipe recipe = new(materialsR, materialsRA);
+CraftingRecipe recipe = new("Body Armor", PeaceOfGear.GearType.BODY_ARMOR, materialsR, materialsRA);
 
 Player player = new Player("Player");
 player.AddSystem(new MaterialsInventorySystem());
@@ -25,19 +25,15 @@ player.AddSystem(new CraftingSystem());
 MaterialsInventorySystem inv = (MaterialsInventorySystem)player.GetSystem(SystemsNames.MaterialsInventory);
 CraftingSystem crafting = (CraftingSystem)player.GetSystem(SystemsNames.Crafting);
 inv.AddNewMaterial(material1);
-inv.AddMaterialsAmount(material1, 10);
+inv.AddMaterialsAmount(material1, 100);
 inv.AddNewMaterial(material2);
-inv.AddMaterialsAmount(material2, 10);
+inv.AddMaterialsAmount(material2, 100);
 
-Console.WriteLine("M1: " +inv.GetMaterialAmount(material1));
-Console.WriteLine("M2: " +inv.GetMaterialAmount(material2));
-
-PeaceOfGear item = (PeaceOfGear)crafting.CraftItem(recipe, inv);
-Console.WriteLine(item.ToString());
-
-Console.WriteLine("M1: " +inv.GetMaterialAmount(material1));
-Console.WriteLine("M2: " +inv.GetMaterialAmount(material2));
-
+while (inv.GetMaterialAmount(material1) >= 5)
+{
+    PeaceOfGear item = (PeaceOfGear)crafting.CraftItem(recipe, inv);
+    Console.WriteLine(item.ToString());
+}
 
 
 

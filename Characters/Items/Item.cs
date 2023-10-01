@@ -18,6 +18,11 @@ public abstract class Item
         this.value = value;
     }
 
+    public void SetName(string name)
+    {
+        this.itemName = name;
+    }
+
     public new string ToString()
     {
         return itemName + "\n" + "Value: " + value + "\n";
