@@ -38,6 +38,7 @@ public class CraftingRecipe
         this.neededMaterials = neededMaterials;
         this.neededMaterialsAmount = neededMaterialsAmount;
         SetBaseName(baseName);
+        SetMinAndMaxRolls();
     }
 
     public List<Material> GetNeededMaterials()
@@ -53,6 +54,21 @@ public class CraftingRecipe
     private void SetBaseName(string name)
     {
         baseName = GetMostMaterial()._MaterialName + " " + name;
+    }
+
+    private void SetMinAndMaxRolls()
+    {
+        Material mostMaterial = GetMostMaterial();
+        minArmorDamageRoll = (int)Math.Round(mostMaterial._MaterialHardness / 10M);
+        if (minArmorDamageRoll < 1) minArmorDamageRoll = 1;
+        maxArmorDamageRoll = (int)Math.Round(mostMaterial._MaterialHardness / 5M);
+        if (maxArmorDamageRoll < 4) maxArmorDamageRoll = 4;
+
+        if (mostMaterial._MaterialMagic < 5) minStatRoll = 1;
+        else if (mostMaterial._MaterialMagic < 8) minStatRoll = 2;
+        else minStatRoll = 3;
+        
+        maxStatRoll = mostMaterial._MaterialMagic;
     }
 
     private Material GetMostMaterial()
