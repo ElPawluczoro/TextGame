@@ -5,6 +5,7 @@ using TextGame.Crafting;
 using TextGame.GeneralMethods;
 using TextGame.World;
 
+/*
 WorldSettings worldSettings = WorldGenerator.GenerateWorld();
 
 List<Material> materialsR = new();
@@ -41,6 +42,13 @@ while (i < 5)
 
     Console.WriteLine(gear1._GearType);
     Console.WriteLine(gear2._GearType);
+}
+*/
+
+WorldSettings world = WorldGenerator.GenerateWorld();
+foreach (Material material in world.GetMaterialsInWorld())
+{
+    Console.WriteLine(material.ToString());
 }
 
 

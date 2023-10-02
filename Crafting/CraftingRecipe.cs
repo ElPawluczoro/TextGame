@@ -52,7 +52,7 @@ public class CraftingRecipe
 
     private void SetBaseName(string name)
     {
-        baseName = GetMostMaterial().MaterialName + " " + name;
+        baseName = GetMostMaterial()._MaterialName + " " + name;
     }
 
     private Material GetMostMaterial()

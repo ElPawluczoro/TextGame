@@ -2,10 +2,11 @@
 {
     public class Material
     {
-        private string materialName; public string MaterialName => materialName;
-        private int materialLevel = 0; public int MaterialLevel => materialLevel;
-        private int materialHardness = 0; public int MaterialHardness => materialHardness;
-        private int materialDifficulty = 0; public int MaterialDifficulty => materialDifficulty;
+        private string materialName; public string _MaterialName => materialName;
+        private int materialLevel = 0; public int _MaterialLevel => materialLevel;
+        private int materialHardness = 0; public int _MaterialHardness => materialHardness;
+        private int materialMagic = 0; public int _MaterialMagic => materialMagic;
+        private int materialDifficulty = 0; public int _MaterialDifficulty => materialDifficulty;
         public Material(string materialName)
         {
             this.materialName = materialName;
@@ -16,6 +17,7 @@
             return materialName + "\n " + 
                    "Level: " + materialLevel + "\n " +
                    "Hardness: " + materialHardness + "\n " +
+                   "Magic: " + materialMagic + "\n " +
                    "Difficulty: " + materialDifficulty;
 
         }
@@ -29,17 +31,23 @@
         {
             materialHardness = hardness;
         }
-        
-        private void SetMaterialDifficulty(int difficulty)
+
+        private void SetMaterialMagic(int magic)
         {
-            materialDifficulty = difficulty;
+            materialMagic = magic;
+        }
+        
+        private void SetMaterialDifficulty()
+        {
+            materialDifficulty = materialMagic + (int)Math.Round(materialHardness * 1.5M);
         }
 
-        public void SetMaterialProperties(int level, int hardness, int difficulty)
+        public void SetMaterialProperties(int level, int hardness, int magic)
         {
             SetMaterialLevel(level);
             SetMaterialHardness(hardness);
-            SetMaterialDifficulty(difficulty);
+            SetMaterialMagic(magic);
+            SetMaterialDifficulty();
         }
 
 

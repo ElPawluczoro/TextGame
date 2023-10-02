@@ -16,7 +16,7 @@ public class MaterialsInventorySystem : ACharacterSystem
     public void AddNewMaterial(Material material)
     {
         materials.Add(material);
-        materialsAmount.Add(material.MaterialName, 0);
+        materialsAmount.Add(material._MaterialName, 0);
     }
 
     public void AddWorldMaterials(WorldSettings worldSettings)
@@ -32,13 +32,13 @@ public class MaterialsInventorySystem : ACharacterSystem
         string materialName = "";
         foreach (var m in materialsAmount)
         {
-            if (material.MaterialName != m.Key) continue;
-            materialName = material.MaterialName;
+            if (material._MaterialName != m.Key) continue;
+            materialName = material._MaterialName;
             break;
         }
 
         materialsAmount[materialName] += amount;
-        Console.WriteLine(amount + " " + material.MaterialName + " added");
+        Console.WriteLine(amount + " " + material._MaterialName + " added");
     }
 
     public void SpendMaterialsAmount(Material material, int amount)
@@ -46,24 +46,24 @@ public class MaterialsInventorySystem : ACharacterSystem
         string materialName = "";
         foreach (var m in materialsAmount)
         {
-            if (material.MaterialName != m.Key) continue;
-            materialName = material.MaterialName;
+            if (material._MaterialName != m.Key) continue;
+            materialName = material._MaterialName;
             break;
         }
 
         materialsAmount[materialName] -= amount;
-        Console.WriteLine(amount + " " + material.MaterialName + " spent");
+        Console.WriteLine(amount + " " + material._MaterialName + " spent");
     }
 
     public string GetMaterialName(int i)
     {
         if (i > materials.Count - 1) return null;
-        return materials[i].MaterialName;
+        return materials[i]._MaterialName;
     }
 
     public int GetMaterialAmount(Material material)
     {
-        return materialsAmount[material.MaterialName];
+        return materialsAmount[material._MaterialName];
     }
 
     public bool IsMaterialEnough(Material material, int amount)

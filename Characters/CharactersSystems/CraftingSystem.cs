@@ -19,7 +19,7 @@ public class CraftingSystem : ACharacterSystem
             Material material = recipe.GetNeededMaterials()[i];
             if (!inventory.IsMaterialEnough(material, amount))
             {
-                Console.WriteLine("Not enough " + material.MaterialName);
+                Console.WriteLine("Not enough " + material._MaterialName);
                 return false;
             }
         }

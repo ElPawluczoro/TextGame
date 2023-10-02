@@ -15,7 +15,7 @@ public class WorldSettings
 
     public void AddMaterial(Material material)
     {
-        if (material.MaterialDifficulty == 0 || material.MaterialHardness == 0 || material.MaterialLevel == 0) return;
+        if (material._MaterialDifficulty == 0 || material._MaterialHardness == 0 || material._MaterialLevel == 0) return;
         materialsAvaiableInWorld.Add(material);
     }
 
@@ -40,7 +40,7 @@ public class WorldSettings
         {
             foreach (Material material in materialsAvaiableInWorld)
             {
-                if (material.MaterialName == name) return true;
+                if (material._MaterialName == name) return true;
             }
             return false;   
         }
