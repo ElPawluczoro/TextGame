@@ -12,6 +12,11 @@
             this.materialName = materialName;
         }
 
+        public Material()
+        {
+            this.materialName = "Blank";
+        }
+
         public new string ToString()
         {
             return materialName + "\n " + 
@@ -48,6 +53,17 @@
             SetMaterialHardness(hardness);
             SetMaterialMagic(magic);
             SetMaterialDifficulty();
+        }
+
+        public static bool CompareMaterials(Material material1, Material material2)
+        {
+            if (material1._MaterialMagic == material2.materialMagic &&
+                material1._MaterialHardness == material2._MaterialHardness)
+            {
+                return true;
+            }
+
+            return false;
         }
 
 
