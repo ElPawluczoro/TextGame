@@ -12,6 +12,18 @@ public class CraftingRecipe
         
     private List<Material> neededMaterials = new();
     private List<int> neededMaterialsAmount = new();
+    private int minArmorDamageRoll = 1;
+    private int maxArmorDamageRoll = 5;
+    private int minStatRoll = 1;
+    private int maxStatRoll = 10;
+    
+    public int MinArmorDamageRoll => minArmorDamageRoll;
+
+    public int MaxArmorDamageRoll => maxArmorDamageRoll;
+
+    public int MinStatRoll => minStatRoll;
+
+    public int MaxStatRoll => maxStatRoll;
 
     public CraftingRecipe()
     {

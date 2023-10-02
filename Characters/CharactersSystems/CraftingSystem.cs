@@ -131,38 +131,44 @@ public class CraftingSystem : ACharacterSystem
         }
     }
 
-    private void SetPeaceOfGearStatsByRarity(PeaceOfGear gear)
+    private void SetPeaceOfGearStatsByRarity(PeaceOfGear gear, CraftingRecipe recipe)
     {
         Random random = new();
         if (gear._GearType == PeaceOfGear.GearType.ONE_HAND_WEAPON ||
             gear._GearType == PeaceOfGear.GearType.TWO_HAND_WEAPON)
         {
-            SetStat(gear, GearStats.Stats.DAMAGE, random.Next(1, 10));
+            SetStat(gear, GearStats.Stats.DAMAGE,
+                random.Next(recipe.MinArmorDamageRoll, recipe.MaxArmorDamageRoll));
         }
         else
         {
-            SetStat(gear, GearStats.Stats.ARMOR, random.Next(1, 10));   
+            SetStat(gear, GearStats.Stats.ARMOR, 
+                random.Next(recipe.MinArmorDamageRoll, recipe.MaxArmorDamageRoll));
         }
+
+        int min = recipe.MinStatRoll;
+        int max = recipe.MaxStatRoll;
+        
         switch (gear._GearRarity)
         {
             case PeaceOfGear.GearRarity.BASIC:
                 break;
             case PeaceOfGear.GearRarity.RARE: 
-                SetPeaceOfGearStat(gear, 2, 1, 10);
+                SetPeaceOfGearStat(gear, 2, min, max);
                 break;
             case PeaceOfGear.GearRarity.LEGENDARY: 
-                SetPeaceOfGearStat(gear, 3, 1, 10);
+                SetPeaceOfGearStat(gear, 3, min, max);
                 break;
             case PeaceOfGear.GearRarity.MYTHIC: 
-                SetPeaceOfGearStat(gear, 4, 1, 10);
+                SetPeaceOfGearStat(gear, 4, min, max);
                 break;
         }
     }
     
-    private void SetPeaceOfGearStats(PeaceOfGear gear)
+    private void SetPeaceOfGearStats(PeaceOfGear gear, CraftingRecipe recipe)
     {
         RollForGearRarityIncrease(gear);
-        SetPeaceOfGearStatsByRarity(gear);
+        SetPeaceOfGearStatsByRarity(gear, recipe);
     }
 
     private string GetPeaceOfGearNameFromRarity(PeaceOfGear gear)
@@ -272,7 +278,7 @@ public class CraftingSystem : ACharacterSystem
         {
             PeaceOfGear newPeaceOfGear = (PeaceOfGear)newItem;
             SetGearType(newPeaceOfGear, recipe);
-            SetPeaceOfGearStats(newPeaceOfGear);
+            SetPeaceOfGearStats(newPeaceOfGear, recipe);
             SetItemValue(newPeaceOfGear);
             
             string itemName = GetPeaceOfGearNameFromRarity(newPeaceOfGear);

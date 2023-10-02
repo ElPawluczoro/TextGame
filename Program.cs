@@ -29,13 +29,18 @@ inv.AddMaterialsAmount(worldSettings.GetMaterialsInWorld()[1], 100);
 inv.AddNewMaterial(worldSettings.GetMaterialsInWorld()[2]);
 inv.AddMaterialsAmount(worldSettings.GetMaterialsInWorld()[2], 100);
 
-PeaceOfGear gear1 = (PeaceOfGear)crafting.CraftItem(recipeArmor, inv);
-Console.WriteLine(gear1.ToString());
+int i = 0;
+while (i < 5)
+{
+    i++;
+    PeaceOfGear gear1 = (PeaceOfGear)crafting.CraftItem(recipeArmor, inv);
+    Console.WriteLine(gear1.ToString());
 
-PeaceOfGear gear2 = (PeaceOfGear)crafting.CraftItem(recipeWeapon, inv);
-Console.WriteLine(gear2.ToString());
+    PeaceOfGear gear2 = (PeaceOfGear)crafting.CraftItem(recipeWeapon, inv);
+    Console.WriteLine(gear2.ToString());
 
-Console.WriteLine(gear1._GearType);
-Console.WriteLine(gear2._GearType);
+    Console.WriteLine(gear1._GearType);
+    Console.WriteLine(gear2._GearType);
+}
 
 
