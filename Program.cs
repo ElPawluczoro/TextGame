@@ -15,7 +15,8 @@ materialsRA.Add(5);
 materialsR.Add(worldSettings.GetMaterialsInWorld()[2]);
 materialsRA.Add(5);
 
-CraftingRecipe recipe = new("Body Armor", PeaceOfGear.GearType.BODY_ARMOR, materialsR, materialsRA);
+CraftingRecipe recipeArmor = new("Body Armor", PeaceOfGear.GearType.BODY_ARMOR, materialsR, materialsRA);
+CraftingRecipe recipeWeapon = new("Sword", PeaceOfGear.GearType.ONE_HAND_WEAPON, materialsR, materialsRA);
 
 Player player = new Player("Player");
 player.AddSystem(new MaterialsInventorySystem());
@@ -28,12 +29,13 @@ inv.AddMaterialsAmount(worldSettings.GetMaterialsInWorld()[1], 100);
 inv.AddNewMaterial(worldSettings.GetMaterialsInWorld()[2]);
 inv.AddMaterialsAmount(worldSettings.GetMaterialsInWorld()[2], 100);
 
-while (inv.GetMaterialAmount(worldSettings.GetMaterialsInWorld()[1]) >= 5)
-{
-    PeaceOfGear item = (PeaceOfGear)crafting.CraftItem(recipe, inv);
-    Console.WriteLine(item.ToString());
-}
+PeaceOfGear gear1 = (PeaceOfGear)crafting.CraftItem(recipeArmor, inv);
+Console.WriteLine(gear1.ToString());
 
+PeaceOfGear gear2 = (PeaceOfGear)crafting.CraftItem(recipeWeapon, inv);
+Console.WriteLine(gear2.ToString());
 
+Console.WriteLine(gear1._GearType);
+Console.WriteLine(gear2._GearType);
 
 

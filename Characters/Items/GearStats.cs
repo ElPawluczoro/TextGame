@@ -9,7 +9,8 @@ public class GearStats
         Stats.STRENGTH,
         Stats.DEXTERITY,
         Stats.INTELLIGENCE,
-        Stats.ARMOR
+        Stats.ARMOR,
+        Stats.DAMAGE
     };
 
     public static void RemoveAlreadyUsedStatsFromList(PeaceOfGear peaceOfGear, List<Stats> statsList)
@@ -19,10 +20,11 @@ public class GearStats
         if (peaceOfGear._Dexterity > 0) statsList.Remove(Stats.DEXTERITY);
         if (peaceOfGear._Intelligence > 0) statsList.Remove(Stats.INTELLIGENCE);
         if (peaceOfGear._Armor > 0) statsList.Remove(Stats.ARMOR);
+        if (peaceOfGear._Damage > 0) statsList.Remove(Stats.DAMAGE);
     }
     
     public enum Stats
     {
-        VITALITY, STRENGTH, DEXTERITY, INTELLIGENCE, ARMOR
+        VITALITY, STRENGTH, DEXTERITY, INTELLIGENCE, ARMOR, DAMAGE
     }
 }

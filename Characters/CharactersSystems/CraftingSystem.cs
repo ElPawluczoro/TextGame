@@ -79,6 +79,15 @@ public class CraftingSystem : ACharacterSystem
         Random random = new();
         
         List<GearStats.Stats> statsPossibleList = GearStats.statsPossible.ToList();
+        if (gear._GearType == PeaceOfGear.GearType.ONE_HAND_WEAPON ||
+            gear._GearType == PeaceOfGear.GearType.TWO_HAND_WEAPON)
+        {
+            statsPossibleList.Remove(GearStats.Stats.ARMOR);
+        }
+        else
+        {
+            statsPossibleList.Remove(GearStats.Stats.DAMAGE);
+        }
         GearStats.RemoveAlreadyUsedStatsFromList(gear, statsPossibleList);
 
         return statsPossibleList[random.Next(0, statsPossibleList.Count)];
@@ -116,13 +125,24 @@ public class CraftingSystem : ACharacterSystem
             case GearStats.Stats.ARMOR:
                 gear.SetArmor(value);
                 break;
+            case GearStats.Stats.DAMAGE:
+                gear.SetDamage(value);
+                break;
         }
     }
 
     private void SetPeaceOfGearStatsByRarity(PeaceOfGear gear)
     {
         Random random = new();
-        SetStat(gear, GearStats.Stats.ARMOR, random.Next(1, 10));
+        if (gear._GearType == PeaceOfGear.GearType.ONE_HAND_WEAPON ||
+            gear._GearType == PeaceOfGear.GearType.TWO_HAND_WEAPON)
+        {
+            SetStat(gear, GearStats.Stats.DAMAGE, random.Next(1, 10));
+        }
+        else
+        {
+            SetStat(gear, GearStats.Stats.ARMOR, random.Next(1, 10));   
+        }
         switch (gear._GearRarity)
         {
             case PeaceOfGear.GearRarity.BASIC:
@@ -235,6 +255,11 @@ public class CraftingSystem : ACharacterSystem
         gear.SetValue(value);
     }
 
+    private void SetGearType(PeaceOfGear gear, CraftingRecipe recipe)
+    {
+        gear.SetGearType(recipe._GearType);
+    }
+
     
     public Item CraftItem(CraftingRecipe recipe, MaterialsInventorySystem inventory)
     {
@@ -246,6 +271,7 @@ public class CraftingSystem : ACharacterSystem
         if (newItem._ItemType == ItemType.PEACE_OF_GEAR)
         {
             PeaceOfGear newPeaceOfGear = (PeaceOfGear)newItem;
+            SetGearType(newPeaceOfGear, recipe);
             SetPeaceOfGearStats(newPeaceOfGear);
             SetItemValue(newPeaceOfGear);
             

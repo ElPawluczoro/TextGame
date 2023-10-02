@@ -11,6 +11,7 @@ public class PeaceOfGear : Item
     private int dexterity;
     private int intelligence;
     private int armor;
+    private int damage;
     private GearType gearType;
     private GearRarity gearRarity;
     
@@ -23,6 +24,7 @@ public class PeaceOfGear : Item
     public int _Intelligence => intelligence;
 
     public int _Armor => armor;
+    public int _Damage => damage;
 
     public GearType _GearType => gearType;
     public GearRarity _GearRarity => gearRarity;
@@ -75,6 +77,11 @@ public class PeaceOfGear : Item
         this.armor = armor;
     }
 
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
+    }
+
     public void SetGearType(GearType gearType)
     {
         this.gearType = gearType;
@@ -112,12 +119,13 @@ public class PeaceOfGear : Item
     {
         string _toString  = base.ToString();
 
+        if (damage > 0) _toString += "damage: " + damage + "\n";
+        if (armor > 0) _toString += "armor: " + armor + "\n";
         if (vitality > 0) _toString += "Vitality: " + vitality + "\n";
         if (strength > 0) _toString += "strength: " + strength + "\n";
         if (dexterity > 0) _toString += "dexterity: " + dexterity + "\n";
         if (intelligence > 0) _toString += "intelligence: " + intelligence + "\n";
-        if (armor > 0) _toString += "armor: " + armor + "\n";
-        
+
         return _toString;
     }
     
