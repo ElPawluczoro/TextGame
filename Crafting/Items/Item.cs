@@ -27,5 +27,10 @@ public abstract class Item
     {
         return itemName + "\n" + "Value: " + value + "\n";
     }
+
+    public string ToStringShort()
+    {
+        return itemName;
+    }
     
 }

@@ -5,7 +5,6 @@ using TextGame.Crafting;
 using TextGame.GeneralMethods;
 using TextGame.World;
 
-/*
 WorldSettings worldSettings = WorldGenerator.GenerateWorld();
 
 List<Material> materialsR = new();
@@ -22,9 +21,11 @@ CraftingRecipe recipeWeapon = new("Sword", PeaceOfGear.GearType.ONE_HAND_WEAPON,
 Player player = new Player("Player");
 player.AddSystem(new MaterialsInventorySystem());
 player.AddSystem(new CraftingSystem());
+player.AddSystem(new ItemsInventorySystem());
 
 MaterialsInventorySystem inv = (MaterialsInventorySystem)player.GetSystem(SystemsNames.MaterialsInventory);
 CraftingSystem crafting = (CraftingSystem)player.GetSystem(SystemsNames.Crafting);
+ItemsInventorySystem itemInv = (ItemsInventorySystem)player.GetSystem(SystemsNames.ItemsInventory);
 inv.AddNewMaterial(worldSettings.GetMaterialsInWorld()[1]);
 inv.AddMaterialsAmount(worldSettings.GetMaterialsInWorld()[1], 100);
 inv.AddNewMaterial(worldSettings.GetMaterialsInWorld()[2]);
@@ -35,17 +36,9 @@ while (i < 5)
 {
     i++;
     PeaceOfGear gear1 = (PeaceOfGear)crafting.CraftItem(recipeArmor, inv);
-    Console.WriteLine(gear1.ToString());
-
     PeaceOfGear gear2 = (PeaceOfGear)crafting.CraftItem(recipeWeapon, inv);
-    Console.WriteLine(gear2.ToString());
+    itemInv.AddItemToInventory(gear1);
+    itemInv.AddItemToInventory(gear2);
+}
 
-    Console.WriteLine(gear1._GearType);
-    Console.WriteLine(gear2._GearType);
-}
-*/
-WorldSettings world = WorldGenerator.GenerateWorld();
-foreach (Material material in world.GetMaterialsInWorld())
-{
-    Console.WriteLine(material.ToString());
-}
+Console.WriteLine(itemInv.ToString());

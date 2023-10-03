@@ -15,7 +15,7 @@ public abstract class Character
     {
         foreach (ACharacterSystem s in characterSystems)
         {
-            if (s.SystemName == system.SystemName) return;
+            if (s._SystemName == system._SystemName) return;
         }
         characterSystems.Add(system);
     }
@@ -24,7 +24,7 @@ public abstract class Character
     {
         foreach (ACharacterSystem sys in characterSystems)
         {
-            if (sys.SystemName == system.SystemName)
+            if (sys._SystemName == system._SystemName)
             {
                 return sys;
             }
@@ -37,7 +37,7 @@ public abstract class Character
     {
         foreach (ACharacterSystem sys in characterSystems)
         {
-            if (sys.SystemName == systemName)
+            if (sys._SystemName == systemName)
             {
                 return sys;
             }
