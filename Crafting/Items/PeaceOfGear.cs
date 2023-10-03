@@ -31,6 +31,17 @@ public class PeaceOfGear : Item
 
     public ItemType ItemType => itemType;
 
+    public static readonly GearType[] _GearTypes =
+    {
+        GearType.HELMET,
+        GearType.BODY_ARMOR,
+        GearType.BOOTS,
+        GearType.PANTS,
+        GearType.GLOVES,
+        GearType.ONE_HAND_WEAPON,
+        GearType.TWO_HAND_WEAPON
+    };
+
     public PeaceOfGear(string itemName) : base(itemName)
     {
         gearType = GearType.NONE;
@@ -128,7 +139,7 @@ public class PeaceOfGear : Item
 
         return _toString;
     }
-    
+
     public enum GearType
     {
         NONE, HELMET, BODY_ARMOR, GLOVES, PANTS, BOOTS , ONE_HAND_WEAPON, TWO_HAND_WEAPON

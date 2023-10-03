@@ -81,10 +81,18 @@ public class CraftingRecipe
             if (neededMaterialsAmount[i] > materialAmount)
             {
                 material = neededMaterials[i];
+                materialAmount = neededMaterialsAmount[i];
             }
         }
         
         return material;
+    }
+
+    public new string ToString()
+    {
+        return "Crafting Recipe: " + baseName + "\n" +
+               neededMaterials[0]._MaterialName + " " + neededMaterialsAmount[0] + "\n" +
+               neededMaterials[1]._MaterialName + " " + neededMaterialsAmount[1];
     }
     
 

@@ -5,8 +5,9 @@ namespace TextGame.World;
 public class WorldSettings
 {
     private string worldName;
-    private List<Material> materialsAvaiableInWorld = new List<Material>();
-    private List<Location> locationsInWorld = new List<Location>();
+    private List<Material> materialsAvaiableInWorld = new();
+    private List<Location> locationsInWorld = new();
+    private List<CraftingRecipe> craftingRecipesInWorld = new();
 
     public WorldSettings(string worldName)
     {
@@ -34,6 +35,16 @@ public class WorldSettings
         return locationsInWorld;
     }
 
+    public void AddCraftingRecipe(CraftingRecipe recipe)
+    {
+        craftingRecipesInWorld.Add(recipe);
+    }
+
+    public List<CraftingRecipe> GetCraftingRecipesInWorld()
+    {
+        return craftingRecipesInWorld;
+    }
+
     public bool ContainsNameInWorld(string name, WorldEntity worldEntity)
     {
         if (worldEntity == WorldEntity.MATERIAL)
@@ -44,11 +55,19 @@ public class WorldSettings
             }
             return false;   
         }
-        else
+        else if (worldEntity == WorldEntity.LOCATION)
         {
             foreach (Location location in locationsInWorld)
             {
                 if (location.LocationName == name) return true;
+            }
+            return false;
+        }
+        else
+        {
+            foreach (CraftingRecipe recipe in craftingRecipesInWorld)
+            {
+                if (recipe._BaseName == name) return true;
             }
             return false;
         }
@@ -57,6 +76,6 @@ public class WorldSettings
 
     public enum WorldEntity
     {
-        MATERIAL, LOCATION
+        MATERIAL, LOCATION, RECIPE
     }
 }
