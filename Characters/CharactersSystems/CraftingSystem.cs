@@ -266,7 +266,7 @@ public class CraftingSystem : ACharacterSystem
         gear.SetGearType(recipe._GearType);
     }
 
-    private bool IsCraftingSkillEnough(Character character, CraftingRecipe recipe)
+    private bool IsCraftingSkillEnough(CraftingRecipe recipe)
     {
         SkillsSystem skills = (SkillsSystem)character.GetSystem(SystemsNames.Skills);
         int skillLevel = skills.GetSkill(SkillsNames.CraftingSkill)._SkillLevel;
@@ -278,9 +278,11 @@ public class CraftingSystem : ACharacterSystem
         return false;
     }
     
-    public Item CraftItem(CraftingRecipe recipe, MaterialsInventorySystem inventory, Character character)
+    public Item CraftItem(CraftingRecipe recipe)
     {
-        if (!IsCraftingSkillEnough(character, recipe))
+        MaterialsInventorySystem inventory =
+            (MaterialsInventorySystem)character.GetSystem(SystemsNames.MaterialsInventory);
+        if (!IsCraftingSkillEnough(recipe))
         {
             Console.WriteLine("This recipe is too hard");
             return null;

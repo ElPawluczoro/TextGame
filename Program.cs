@@ -43,7 +43,7 @@ inv.AddNewMaterial(material2);
 inv.AddMaterialsAmount(material1, 20);
 inv.AddMaterialsAmount(material2, 20);
 
-PeaceOfGear gear = (PeaceOfGear)crafting.CraftItem(recipe, inv, player);
+PeaceOfGear gear = (PeaceOfGear)crafting.CraftItem(recipe);
 
 Console.WriteLine(gear.ToString());
 

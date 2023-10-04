@@ -18,6 +18,7 @@ public abstract class Character
             if (s._SystemName == system._SystemName) return;
         }
         characterSystems.Add(system);
+        system.SetCharacter(this);
     }
 
     public ACharacterSystem GetSystem(ACharacterSystem system)
