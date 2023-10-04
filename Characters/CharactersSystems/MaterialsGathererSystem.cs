@@ -45,5 +45,9 @@ public class MaterialsGathererSystem: ACharacterSystem
         chanceForBonusMaterial += amount;
         if (chanceForBonusMaterial > 100) chanceForBonusMaterial = 100;
     }
-    
+
+    public override string ToString()
+    {
+        return "";
+    }
 }

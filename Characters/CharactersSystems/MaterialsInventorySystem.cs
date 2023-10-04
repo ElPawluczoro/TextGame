@@ -71,6 +71,16 @@ public class MaterialsInventorySystem : ACharacterSystem
         if (GetMaterialAmount(material) < amount) return false;
         return true;
     }
-    
-    
+
+
+    public override string ToString()
+    {
+        string _toString = "";
+        foreach (Material material in materials)
+        {
+            _toString += material._MaterialName + " " + GetMaterialAmount(material) + "\n";
+        }
+
+        return _toString;
+    }
 }

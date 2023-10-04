@@ -27,7 +27,7 @@ public class ItemsInventorySystem : ACharacterSystem
         items.Add(item);
     }
 
-    public new string ToString()
+    public override string ToString()
     {
         string _toString = "Inventory:";
         for (int i = 0; i < items.Count; i ++ )

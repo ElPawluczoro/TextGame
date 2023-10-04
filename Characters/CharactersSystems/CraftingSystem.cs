@@ -278,20 +278,20 @@ public class CraftingSystem : ACharacterSystem
         return false;
     }
     
-    public Item CraftItem(CraftingRecipe recipe)
+    public void CraftItem(CraftingRecipe recipe)
     {
         MaterialsInventorySystem inventory =
             (MaterialsInventorySystem)character.GetSystem(SystemsNames.MaterialsInventory);
         if (!IsCraftingSkillEnough(recipe))
         {
             Console.WriteLine("This recipe is too hard");
-            return null;
+            return;
         }
 
         if (!IsMaterialsEnough(recipe, inventory))
         {
             Console.WriteLine("Character don't have enough materials");
-            return null;
+            return;
         }
         
         SpendMaterials(recipe, inventory);
@@ -313,9 +313,13 @@ public class CraftingSystem : ACharacterSystem
             newItem = newPeaceOfGear;
         }
 
-        
-        
-        return newItem;
+        ItemsInventorySystem itemsInventory = (ItemsInventorySystem)character.GetSystem(SystemsNames.ItemsInventory);
+        itemsInventory.AddItemToInventory(newItem);
+
     }
-    
+
+    public override string ToString()
+    {
+        return "";
+    }
 }

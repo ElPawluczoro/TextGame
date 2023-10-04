@@ -10,4 +10,6 @@ public abstract class ACharacterSystem
     {
         this.character = character;
     }
+
+    public new abstract string ToString();
 }

@@ -8,10 +8,6 @@ using TextGame.World;
 //WorldSettings worldSettings = WorldGenerator.GenerateWorld();
 
 Player player = new Player("Player");
-player.AddSystem(new MaterialsInventorySystem());
-player.AddSystem(new CraftingSystem());
-player.AddSystem(new ItemsInventorySystem());
-player.AddSystem(new SkillsSystem());
 
 MaterialsInventorySystem inv = (MaterialsInventorySystem)player.GetSystem(SystemsNames.MaterialsInventory);
 CraftingSystem crafting = (CraftingSystem)player.GetSystem(SystemsNames.Crafting);
@@ -43,9 +39,9 @@ inv.AddNewMaterial(material2);
 inv.AddMaterialsAmount(material1, 20);
 inv.AddMaterialsAmount(material2, 20);
 
-PeaceOfGear gear = (PeaceOfGear)crafting.CraftItem(recipe);
+crafting.CraftItem(recipe);
 
-Console.WriteLine(gear.ToString());
+Console.WriteLine(itemInv.ToString());
 
 
 

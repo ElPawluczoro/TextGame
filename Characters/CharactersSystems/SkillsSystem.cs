@@ -40,8 +40,10 @@ public class SkillsSystem : ACharacterSystem
     {
         skills.Add(skill);
     }
-    
-    
-    
-    
+
+
+    public override string ToString()
+    {
+        throw new NotImplementedException();
+    }
 }
