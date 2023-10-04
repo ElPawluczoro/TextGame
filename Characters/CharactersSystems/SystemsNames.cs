@@ -6,4 +6,5 @@ public class SystemsNames
     public const string MaterialsInventory = "MaterialsInventorySystem";
     public const string Crafting = "CraftingSystem";
     public const string ItemsInventory = "ItemsInventorySystem";
+    public const string Skills = "SkillsSystem";
 }

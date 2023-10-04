@@ -12,11 +12,13 @@ public class CraftingRecipe
         
     private List<Material> neededMaterials = new();
     private List<int> neededMaterialsAmount = new();
+    private int recipeDifficulty = 0;
     private int minArmorDamageRoll = 1;
     private int maxArmorDamageRoll = 5;
     private int minStatRoll = 1;
     private int maxStatRoll = 10;
-    
+
+    public int _RecipeDifficulty => recipeDifficulty;
     public int MinArmorDamageRoll => minArmorDamageRoll;
 
     public int MaxArmorDamageRoll => maxArmorDamageRoll;
@@ -38,6 +40,7 @@ public class CraftingRecipe
         this.neededMaterials = neededMaterials;
         this.neededMaterialsAmount = neededMaterialsAmount;
         SetBaseName(baseName);
+        SetRecipeDifficulty();
         SetMinAndMaxRolls();
     }
 
@@ -88,9 +91,15 @@ public class CraftingRecipe
         return material;
     }
 
+    public void SetRecipeDifficulty()
+    {
+        recipeDifficulty = neededMaterials[0]._MaterialDifficulty + neededMaterials[1]._MaterialDifficulty / 2;
+    }
+
     public new string ToString()
     {
         return "Crafting Recipe: " + baseName + "\n" +
+               "Difficulty: " + recipeDifficulty + "\n" +
                neededMaterials[0]._MaterialName + " " + neededMaterialsAmount[0] + "\n" +
                neededMaterials[1]._MaterialName + " " + neededMaterialsAmount[1];
     }

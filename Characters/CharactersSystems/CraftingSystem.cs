@@ -266,10 +266,32 @@ public class CraftingSystem : ACharacterSystem
         gear.SetGearType(recipe._GearType);
     }
 
-    
-    public Item CraftItem(CraftingRecipe recipe, MaterialsInventorySystem inventory)
+    private bool IsCraftingSkillEnough(Character character, CraftingRecipe recipe)
     {
-        if (!IsMaterialsEnough(recipe, inventory)) return null;
+        SkillsSystem skills = (SkillsSystem)character.GetSystem(SystemsNames.Skills);
+        int skillLevel = skills.GetSkill(SkillsNames.CraftingSkill)._SkillLevel;
+        if (skillLevel >= recipe._RecipeDifficulty)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+    public Item CraftItem(CraftingRecipe recipe, MaterialsInventorySystem inventory, Character character)
+    {
+        if (!IsCraftingSkillEnough(character, recipe))
+        {
+            Console.WriteLine("This recipe is too hard");
+            return null;
+        }
+
+        if (!IsMaterialsEnough(recipe, inventory))
+        {
+            Console.WriteLine("Character don't have enough materials");
+            return null;
+        }
+        
         SpendMaterials(recipe, inventory);
 
         Item newItem = new PeaceOfGear("PeaceOfGear");
