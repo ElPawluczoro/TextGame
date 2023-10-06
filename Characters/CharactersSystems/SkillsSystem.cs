@@ -44,6 +44,24 @@ public class SkillsSystem : ACharacterSystem
 
     public override string ToString()
     {
-        throw new NotImplementedException();
+        string _toString = "";
+        foreach (Skill skill in skills)
+        {
+            _toString += skill.ToString() + "\n";
+        }
+
+        return _toString;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

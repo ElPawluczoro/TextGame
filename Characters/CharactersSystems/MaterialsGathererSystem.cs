@@ -19,11 +19,13 @@ public class MaterialsGathererSystem: ACharacterSystem
         chanceForBonusMaterial = characterSkills.GetSkill(SkillsNames.GatheringSkill)._SkillLevel / 10;
     }
     
-    public void GatherMaterials(Location location, MaterialsInventorySystem inv)
+    public void GatherMaterials(Location location)
     {
         if (!location.GateringAvaiable) return;
-        
+        MaterialsInventorySystem inv = (MaterialsInventorySystem)character.GetSystem(SystemsNames.MaterialsInventory);
 
+        UpdateChanceForBonusMaterial();
+        
         Random random = new Random();
         int iterations = random.Next(5, 10);
 
@@ -33,8 +35,14 @@ public class MaterialsGathererSystem: ACharacterSystem
         {
             var index = random.Next(0, location.GetAvaiableMaterials().Count);
             material = location.GetAvaiableMaterials()[index];
-            inv.AddMaterialsAmount(material, 1);
+
+            RollForLevelIncrease();
+            
             if (RollForBonusMaterial())
+            {
+                inv.AddMaterialsAmount(material, 2);
+            }
+            else
             {
                 inv.AddMaterialsAmount(material, 1);
             }
@@ -48,10 +56,17 @@ public class MaterialsGathererSystem: ACharacterSystem
         return false;
     }
 
-    public void IncreaseChanceForBonusMaterial(int amount)
+    public void RollForLevelIncrease()
     {
-        chanceForBonusMaterial += amount;
-        if (chanceForBonusMaterial > 100) chanceForBonusMaterial = 100;
+        Random random = new();
+        SkillsSystem skills = (SkillsSystem)character.GetSystem(SystemsNames.Skills);
+        int successRange = 1100 - skills.GetSkill(SkillsNames.CraftingSkill)._SkillLevel;
+
+        if (successRange >= random.Next(1, 1100))
+        {
+            skills.GetSkill(SkillsNames.GatheringSkill).IncreaseLevel(1);
+        }
+        
     }
 
     public override string ToString()

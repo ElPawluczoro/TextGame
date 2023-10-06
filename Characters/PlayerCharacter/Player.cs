@@ -15,8 +15,8 @@ public class Player : Character
         AddRequiredSystems();
 
         SkillsSystem skillsSystem = (SkillsSystem)GetSystem(SystemsNames.Skills);
-        skillsSystem.AddSkill(new Skill(SkillsNames.CraftingSkill, 50));
-        skillsSystem.AddSkill(new Skill(SkillsNames.GatheringSkill, 0));
+        skillsSystem.AddSkill(new Skill(SkillsNames.CraftingSkill, 50, 1000));
+        skillsSystem.AddSkill(new Skill(SkillsNames.GatheringSkill, 0, 1000));
 
     }
     
