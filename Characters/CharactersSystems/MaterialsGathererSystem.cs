@@ -12,10 +12,17 @@ public class MaterialsGathererSystem: ACharacterSystem
         systemName = SystemsNames.MaterialsGatherer;
         requiredSystems.Add(new MaterialsInventorySystem());
     }
+
+    private void UpdateChanceForBonusMaterial()
+    {
+        SkillsSystem characterSkills = (SkillsSystem)character.GetSystem(SystemsNames.Skills);
+        chanceForBonusMaterial = characterSkills.GetSkill(SkillsNames.GatheringSkill)._SkillLevel / 10;
+    }
     
     public void GatherMaterials(Location location, MaterialsInventorySystem inv)
     {
         if (!location.GateringAvaiable) return;
+        
 
         Random random = new Random();
         int iterations = random.Next(5, 10);

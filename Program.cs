@@ -9,8 +9,12 @@ using TextGame.World;
 
 Player player = new Player("Player");
 
-Console.WriteLine(player.GetSystemsToString());
+WorldSettings world = WorldGenerator.GenerateWorld();
 
+foreach (CraftingRecipe recipe in world.GetCraftingRecipesInWorld())
+{
+    Console.WriteLine(recipe.ToString());
+}
 
 
 
