@@ -10,6 +10,7 @@ public class MaterialsGathererSystem: ACharacterSystem
     public MaterialsGathererSystem()
     {
         systemName = SystemsNames.MaterialsGatherer;
+        requiredSystems.Add(new MaterialsInventorySystem());
     }
     
     public void GatherMaterials(Location location, MaterialsInventorySystem inv)

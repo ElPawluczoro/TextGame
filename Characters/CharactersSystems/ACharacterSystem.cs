@@ -6,6 +6,13 @@ public abstract class ACharacterSystem
     protected Character character;
     public string _SystemName => systemName;
 
+    protected List<ACharacterSystem> requiredSystems = new();
+
+    public List<ACharacterSystem> GetRequiredSystems()
+    {
+        return requiredSystems;
+    }
+
     public void SetCharacter(Character character)
     {
         this.character = character;

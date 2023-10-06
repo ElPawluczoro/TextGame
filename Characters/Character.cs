@@ -11,6 +11,25 @@ public abstract class Character
         this.characterName = characterName; ;
     }
 
+    public void AddRequiredSystems()
+    {
+        List<ACharacterSystem> systemsToAdd = new();
+        
+        foreach (ACharacterSystem system in characterSystems)
+        {
+            foreach (ACharacterSystem requiredSystem in system.GetRequiredSystems())
+            {
+                systemsToAdd.Add(requiredSystem);
+            }
+        }
+
+        foreach (ACharacterSystem system in systemsToAdd)
+        {
+            AddSystem(system);
+        }
+        
+        
+    }
     public void AddSystem(ACharacterSystem system)
     {
         foreach (ACharacterSystem s in characterSystems)
@@ -45,6 +64,17 @@ public abstract class Character
         }
 
         return null;
+    }
+
+    public string GetSystemsToString()
+    {
+        string _toString = "";
+        foreach (ACharacterSystem system in characterSystems)
+        {
+            _toString += system._SystemName + "\n";
+        }
+
+        return _toString;
     }
     
     

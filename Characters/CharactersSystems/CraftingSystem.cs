@@ -9,6 +9,8 @@ public class CraftingSystem : ACharacterSystem
     public CraftingSystem()
     {
         systemName = SystemsNames.Crafting;
+        requiredSystems.Add(new MaterialsInventorySystem());
+        requiredSystems.Add(new ItemsInventorySystem());
     }
 
     private bool IsMaterialsEnough(CraftingRecipe recipe, MaterialsInventorySystem inventory)
